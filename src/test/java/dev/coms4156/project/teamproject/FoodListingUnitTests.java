@@ -8,16 +8,12 @@ import dev.coms4156.project.teamproject.model.FoodListing;
 import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 
 /**
  * Unit tests for the FoodListing class.
  * Tests the getters and setters, as well
  * as methods for determining equality of two FoodListing objects.
  */
-@SpringBootTest
-@ContextConfiguration
 public class FoodListingUnitTests {
   private ClientProfile client;
   private AccountProfile account;
