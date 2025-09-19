@@ -41,7 +41,7 @@ public class ApiTests {
   public void createClients() {
     // Create client 1
     RequestSpecification spec = new RequestSpecBuilder()
-                                    .setBaseUri("http://34.48.131.233:8080/api/clientProfiles")
+                                    .setBaseUri("https://backend-api-561546311937.us-east1.run.app/api/clientProfiles")
                                     .build();
     Response response = given().spec(spec).when().post("/create")
                         .then().assertThat().statusCode(201).extract().response();
@@ -60,7 +60,7 @@ public class ApiTests {
   public void createAccountsForClient1() {
     // Create provider for client 1
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080/api/accountProfiles")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app/api/accountProfiles")
         .build();
 
     Response response = given().spec(spec)
@@ -90,7 +90,7 @@ public class ApiTests {
   public void createAccountsForClient2() {
     // Create provider for client 2
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080/api/accountProfiles")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app/api/accountProfiles")
         .build();
 
     Response response = given().spec(spec)
@@ -120,7 +120,7 @@ public class ApiTests {
   @Order(4)
   public void createListingsForClient1() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app")
         .build();
 
     Response response = given().spec(spec)
@@ -154,7 +154,7 @@ public class ApiTests {
   @Order(5)
   public void createListingsForClient2() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app")
         .build();
 
     Response response = given().spec(spec)
@@ -187,7 +187,7 @@ public class ApiTests {
   @Test
   public void getClientTest() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080/api/clientProfiles")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app/api/clientProfiles")
         .build();
     Response response = given().spec(spec)
         .queryParam("clientId", client1Id)
@@ -207,7 +207,7 @@ public class ApiTests {
   @Test
   public void getClientNotFoundTest() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080/api/clientProfiles")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app/api/clientProfiles")
         .build();
     Response response = given().spec(spec)
         .queryParam("clientId", -1)
@@ -220,7 +220,7 @@ public class ApiTests {
   @Test
   public void getAccountTestClient1() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080/api/accountProfiles")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app/api/accountProfiles")
         .build();
     Response response = given().spec(spec)
         .queryParam("accountId", client1ProviderId)
@@ -240,7 +240,7 @@ public class ApiTests {
   @Test
   public void getAccountTestClient2() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080/api/accountProfiles")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app/api/accountProfiles")
         .build();
     Response response = given().spec(spec)
         .queryParam("accountId", client2ProviderId)
@@ -260,7 +260,7 @@ public class ApiTests {
   @Test
   public void getAccountNotFoundTest() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080/api/accountProfiles")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app/api/accountProfiles")
         .build();
     Response response = given().spec(spec)
         .queryParam("accountId", -1)
@@ -273,7 +273,7 @@ public class ApiTests {
   @Test
   public void getFoodListingsTest() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app")
         .build();
     given().spec(spec)
         .queryParam("clientId", client1Id)
@@ -289,7 +289,7 @@ public class ApiTests {
   @Test
   public void getFoodListingsTest2() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app")
         .build();
     given().spec(spec)
         .queryParam("clientId", client2Id)
@@ -305,7 +305,7 @@ public class ApiTests {
   @Test
   public void getNearbyListingsNoneFoundTest() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app")
         .build();
     given().spec(spec)
         .queryParam("clientId", client1Id)
@@ -319,7 +319,7 @@ public class ApiTests {
   @Test
   public void getNearbyListingsOneFoundTest() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app")
         .build();
     // listings 1 and 2 are far apart, should only find listing 1
     // when querying from listing 1's location
@@ -347,7 +347,7 @@ public class ApiTests {
   @Order(7)
   public void getNearbyListingsMultipleFoundTest() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app")
         .build();
     // in client 2, listings 1 and 2 are within 10 km/miles/whatever of each other
     given().spec(spec)
@@ -366,7 +366,7 @@ public class ApiTests {
   @Test
   public void getFoodListingsUnderAccountTest() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app")
         .build();
     given().spec(spec)
         .queryParam("clientId", client1Id)
@@ -391,7 +391,7 @@ public class ApiTests {
   @Order(6)
   public void createRequestClient1Test() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080/api/foodRequests")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app/api/foodRequests")
         .build();
     Response response = given().spec(spec)
         .queryParam("clientId", client1Id)
@@ -408,7 +408,7 @@ public class ApiTests {
   @Order(6)
   public void createRequestClient2Test() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080/api/foodRequests")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app/api/foodRequests")
         .build();
     Response response = given().spec(spec)
         .queryParam("clientId", client2Id)
@@ -444,7 +444,7 @@ public class ApiTests {
   @Test
   public void getRequestTest() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080/api/foodRequests")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app/api/foodRequests")
         .build();
     Response response = given().spec(spec)
         .queryParam("requestId", client1RequestId)
@@ -458,7 +458,7 @@ public class ApiTests {
   @Test
   public void getRequestNotFoundTest() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080/api/foodRequests")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app/api/foodRequests")
         .build();
     given().spec(spec)
         .queryParam("requestId", -1)
@@ -469,7 +469,7 @@ public class ApiTests {
   @Test
   public void updateRequestTest() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080/api/foodRequests")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app/api/foodRequests")
         .build();
     given()
         .spec(spec)
@@ -493,7 +493,7 @@ public class ApiTests {
   @Test
   public void getRequestsForListingClient1Test() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app")
         .build();
     given().spec(spec)
         .queryParam("clientId", client1Id)
@@ -509,7 +509,7 @@ public class ApiTests {
   @Test
   public void getRequestsForListingClient2Test() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app")
         .build();
     given().spec(spec)
         .queryParam("clientId", client2Id)
@@ -536,7 +536,7 @@ public class ApiTests {
   @Test
   public void fulfillRequestTest() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app")
         .build();
     given().spec(spec)
         .queryParam("clientId", client2Id)
@@ -551,7 +551,7 @@ public class ApiTests {
   @Test
   public void updateFoodListingTest() {
     RequestSpecification spec = new RequestSpecBuilder()
-        .setBaseUri("http://34.48.131.233:8080")
+        .setBaseUri("https://backend-api-561546311937.us-east1.run.app")
         .build();
     given().spec(spec)
         .queryParam("clientId", client2Id)

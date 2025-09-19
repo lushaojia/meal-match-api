@@ -21,6 +21,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource;
 
 /**
  * Integration tests for the ClientProfileController, AccountProfileController,
@@ -34,6 +35,14 @@ import org.springframework.http.ResponseEntity;
  * recipients for existing listings posted by providers under the same client.
  */
 @DataJpaTest
+@TestPropertySource(properties = {
+    "spring.jpa.hibernate.ddl-auto=create-drop",
+    "spring.datasource.url=jdbc:h2:mem:testdb",
+    "spring.datasource.driver-class-name=org.h2.Driver",
+    "spring.datasource.username=sa",
+    "spring.datasource.password=",
+    "spring.jpa.database-platform=org.hibernate.dialect.H2Dialect"
+  })
 @Import({FoodListingController.class,
     ClientProfileController.class,
     AccountProfileController.class})

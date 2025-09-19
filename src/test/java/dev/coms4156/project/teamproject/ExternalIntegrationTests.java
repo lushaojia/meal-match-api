@@ -18,6 +18,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.TestPropertySource;
 
 /**
  * This class is used to perform external integration testing
@@ -25,6 +26,14 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
  * is the backbone for the persistent data storage of our service.
  */
 @DataJpaTest
+@TestPropertySource(properties = {
+  "spring.jpa.hibernate.ddl-auto=create-drop",
+  "spring.datasource.url=jdbc:h2:mem:testdb",
+  "spring.datasource.driver-class-name=org.h2.Driver",
+  "spring.datasource.username=sa",
+  "spring.datasource.password=",
+  "spring.jpa.database-platform=org.hibernate.dialect.H2Dialect"
+})
 class ExternalIntegrationTests {
   @Autowired
   private FoodRequestRepository foodRequestRepository;
