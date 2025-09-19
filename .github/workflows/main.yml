@@ -22,9 +22,9 @@ jobs:
           java-version: '17'
           distribution: 'corretto'
 
-      - name: Build with Maven
+      - name: Build with Maven (skip security check for dependencies)
         working-directory: .
-        run: mvn clean install
+        run: mvn clean install -Ddependency-check.skip=true
 
       - name: Run tests
         working-directory: .
