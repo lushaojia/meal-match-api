@@ -1,0 +1,26 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< dev.coms4156.project:TeamProject >------------------
+[INFO] Building TeamProject 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> pmd:3.23.0:check (default-cli) > :pmd @ TeamProject >>>
+[INFO] 
+[INFO] --- pmd:3.23.0:pmd (pmd) @ TeamProject ---
+[WARNING] Unable to locate Source XRef to link to - DISABLED
+[INFO] PMD version: 7.0.0
+[INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+[INFO] 
+[INFO] <<< pmd:3.23.0:check (default-cli) < :pmd @ TeamProject <<<
+[INFO] 
+[INFO] 
+[INFO] --- pmd:3.23.0:check (default-cli) @ TeamProject ---
+[INFO] PMD version: 7.0.0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.995 s
+[INFO] Finished at: 2024-10-18T17:52:18-04:00
+[INFO] ------------------------------------------------------------------------

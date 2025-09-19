@@ -1,0 +1,17 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< dev.coms4156.project:TeamProject >------------------
+[INFO] Building TeamProject 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- checkstyle:3.2.0:check (default-cli) @ TeamProject ---
+[INFO] Starting audit...
+Audit done.
+[INFO] You have 0 Checkstyle violations.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.455 s
+[INFO] Finished at: 2024-10-18T17:50:49-04:00
+[INFO] ------------------------------------------------------------------------
