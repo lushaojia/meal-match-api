@@ -1,34 +1,62 @@
-# 4156 Team Project - ASE Aces
+# Meal Match API
+Meal Match API is a microservice that provides a platform to connect wtih food providers with surplus (e.g. restaurants, grocery stores) with those in need. It provides endpoints for providers to create new food listings, and endpoints for recipients to see nearby listings and make requests for items. 
 
-## Building, Running, and Testing a Local Instance
+## 🛠️ Tech Stack
+- **Backend**: Java, Spring Boot
+- **Database**: MySQL
+- **Testing**: JUnit 5, REST Assured, JaCoCo coverage reporting
+- **Build Tool**: Maven
+- **Deployment**: Google Cloud Run with Docker containerization
+- **Code Quality**: Checkstyle, PMD static analysis
+- **CI/CD**: GitHub Actions with automated testing and reporting on push to main
 
-- To run the service: `mvn spring-boot:run`
+## 🚀 Quick Start for Developers: Running a Local Instance
+### Prerequisites
+- Java 17 or higher
+- Maven 3.6+
+- Docker
+
+### Database Setup
+
+1. **Start MySQL database with Docker:**
+```bash
+docker run --name meal-match-db \
+  -e MYSQL_ROOT_PASSWORD=your_password \
+  -e MYSQL_DATABASE=team_project_database \
+  -p 3306:3306 \
+  -d mysql:8.0
+```
+The application will automatically create the database schema on startup.
+
+2. **Update database configuration in `src/main/resources/application.properties`:**
+```properties
+spring.datasource.password=your_password
+```
+
+3. **Run the application:**
+```bash
+mvn spring-boot:run
+```
+
+A few useful commands:
 - To run all tests: `mvn test`
 - To see the test coverage: `mvn jacoco:report` and open `target/site/jacoco/index.html` in a
   web browser
 - To run the style checker: `mvn checkstyle:check`
 - To do static analysis with PMD: `mvn pmd:check`
 
-## A Note to Developers
-
-Thank you for considering using our service! To use it, follow these steps:
-
-1. Set up some form of persistent storage. This is required to store the various IDs returned by the service!
-2. Make a call to `/api/clientProfiles/create` to register your client app. Store the `clientId` that is returned.
-3. Make calls to `/api/accountProfiles/create` to register some accounts. Store the `accountId`s that are returned.
+## 🕹️ Usage
+1. Make a call to `/api/clientProfiles/create` to register your client app. Store the `clientId` that is returned, as it is associated with all of the data that you app handles and you will need it for calls to all other endpoints.
+3. Make calls to `/api/accountProfiles/create` to register new accounts. Store the `accountId`s returned as they are associated with the data for users using your app.
 4. With `clientId` and `accountId`, you can now use the other various endpoints in the API.
 
-Each client app _must_ only have one `clientId`! There is no reason for one client to have multiple.
+## 🔗 Live URL
 
-Note that locations are returned in latitude/longitude form — you'll have to call a geocoding API to turn it into an address.
-
-## Demo URL
-
-[http://34.85.143.68:8080/](http://34.85.143.68:8080/)
+[https://backend-api-561546311937.us-east1.run.app](https://backend-api-561546311937.us-east1.run.app)
 
 ---
 
-## Third-Party Code
+## 📚 Third-Party Code
 
 | Purpose                | Source        | Location in Code                                 |
 | ---------------------- | ------------- | ------------------------------------------------ |
@@ -39,10 +67,10 @@ Note that locations are returned in latitude/longitude form — you'll have to c
 
 ---
 
-## Continuous Integration (CI) Reports
+## ⚙️ Continuous Integration
 
 The results of the CI loop and the reports mentioned below can be found at:
-https://github.com/jason5122/4156-team-project/actions
+
 
 The workflow automatically
 
@@ -52,10 +80,11 @@ The workflow automatically
 4. Runs branch coverage and generates a report
 
 ---
+## 🌐 API Endpoints
 
-## **FoodRequest Endpoints**
+### **FoodRequest Endpoints**
 
-### **POST /api/foodRequests/create**
+#### **POST /api/foodRequests/create**
 
 **Expected Input Parameters**:
 
@@ -80,7 +109,7 @@ the requested quantity. This is a key step in the process of requesting food fro
 - **HTTP 404** Status Code is returned if any of the specified IDs (clientId, accountId, listingId)
   do not exist.
 
-### **GET /api/foodRequests/get**
+#### **GET /api/foodRequests/get**
 
 **Expected Input Parameters**:
 
@@ -107,7 +136,7 @@ This endpoint retrieves the details of a food request by its request ID.
 - **HTTP 404** Status Code is returned if the specified `requestId` does not exist.
 - **HTTP 400** Status Code is returned if an error occurs while processing the request.
 
-### **PUT /api/foodRequests/update**
+#### **PUT /api/foodRequests/update**
 
 **Expected Input Parameters**:
 
@@ -129,7 +158,7 @@ This endpoint updates the quantity of food requested in an existing food request
 
 - **HTTP 404** Status Code is returned if the specified `requestId` does not exist.
 
-### **Operational Guidelines**
+#### **Operational Guidelines**
 
 - **Order of API Calls**: The `/create` endpoint should be called before `/get` or `/update` to
   ensure a food request exists.
@@ -140,9 +169,9 @@ This endpoint updates the quantity of food requested in an existing food request
 
 ---
 
-## **ClientProfile Endpoints**
+### **ClientProfile Endpoints**
 
-### **POST /api/clientProfiles/create**
+#### **POST /api/clientProfiles/create**
 
 **Expected Input Parameters**: N/A\
 **Expected Output**: A `ClientProfile` object containing the `client_id` and other details.
@@ -190,9 +219,9 @@ This endpoint retrieves the details of a client profile by the provided client I
 
 ---
 
-## **AccountProfile Endpoints**
+### **AccountProfile Endpoints**
 
-### **POST /api/accountProfiles/create**
+#### **POST /api/accountProfiles/create**
 
 **Expected Input Parameters**:
 
@@ -223,7 +252,7 @@ type, phone number, and name.
 
 - **HTTP 404** Status Code is returned if the `clientId` does not exist in the system.
 
-### **GET /api/accountProfiles/get**
+#### **GET /api/accountProfiles/get**
 
 **Expected Input Parameters**:
 
@@ -246,7 +275,7 @@ The retrieved information includes the account holder's name and the account ID.
 
 - **HTTP 404** Status Code is returned if the specified `accountId` does not exist.
 
-### **Operational Guidelines**
+#### **Operational Guidelines**
 
 - **Order of API Calls**: The `/create` endpoint must be called before retrieving an account profile
   using `/get` to ensure the account exists.
@@ -255,9 +284,9 @@ The retrieved information includes the account holder's name and the account ID.
 
 ---
 
-## FoodListing Endpoints
+### FoodListing Endpoints
 
-### POST /createFoodListing
+#### POST /createFoodListing
 
 **Expected Input Parameters:**
 
@@ -286,7 +315,7 @@ The retrieved information includes the account holder's name and the account ID.
   ```
 - A status code of `500 Internal Server Error` with a response body containing the message "Failed to create food listing" if an unexpected error occurs during the creation or storage of the listing.
 
-### GET /getFoodListings
+#### GET /getFoodListings
 
 **Expected Input Parameters:**
 
@@ -337,7 +366,7 @@ The retrieved information includes the account holder's name and the account ID.
   ```
 - A status code of `404 Not Found` if there are no listings within the specified distance of the specified location
 
-### GET /getFoodListingsUnderAccount
+#### GET /getFoodListingsUnderAccount
 
 **Expected Input Parameters:**
 
@@ -363,7 +392,7 @@ The retrieved information includes the account holder's name and the account ID.
 - A status code of `404 Not Found` if there are no listings under the specified account
 - A status code of `401 Unauthorized` if the account with the specified `accountId` is not of type `AccountType.PROVIDER`
 
-### GET /getRequestsForListing
+#### GET /getRequestsForListing
 
 **Expected Input Parameters:**
 
@@ -437,7 +466,7 @@ The retrieved information includes the account holder's name and the account ID.
   }
   ```
 
-### PATCH /updateFoodListing
+#### PATCH /updateFoodListing
 
 **Expected Input Parameters:**
 
@@ -477,14 +506,10 @@ The retrieved information includes the account holder's name and the account ID.
   }
   ```
 
-### Operational Guidelines
+#### Operational Guidelines
 
 - **Order of API calls:**
   - `/getFoodListings` and `/getNearbyListings` should only be called with `clientId` after the corresponding client has been created
   - `/createFoodListing` should only be called with `clientId` and `accountId` after the corresponding client and account have been created
   - `/getListingsUnderAccount`, `/getRequestsForListing`, `/fulfillRequest`, `/updateFoodListing` should only be called with `clientId`, `accountId`, and `listingId` after the corresponding listing has been created by the account in the client
 - **Error Handling:** If an invalid `clientId`, `accountId`, and/or `listingId` is provided, the service will return a `404 Not Found` status code with a corresonding error message.
-
-### Trello Board
-
-https://trello.com/b/syksFcSZ/ase-aces
