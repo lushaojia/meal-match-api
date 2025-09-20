@@ -1,6 +1,8 @@
 # Meal Match API
 Meal Match API is a microservice that provides a platform to connect wtih food providers with surplus (e.g. restaurants, grocery stores) with those in need. It provides endpoints for providers to create new food listings, and endpoints for recipients to see nearby listings and make requests for items. 
 
+This project was developed collaboratively with three other students for COMS 4156 - Advanced Software Engineering at Columbia University.
+
 ## 🛠️ Tech Stack
 - **Backend**: Java, Spring Boot
 - **Database**: MySQL
